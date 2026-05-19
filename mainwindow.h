@@ -1,21 +1,35 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
+// mainwindow.h
+#pragma once
 #include <QMainWindow>
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QFileDialog>
+
+class BigInteger;
+class BigFraction;
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
 public:
-  MainWindow(QWidget *parent = nullptr);
-  ~MainWindow();
+  MainWindow(QWidget* parent = nullptr);
+
+private slots:
+  void onConvertClicked();
+  void onLoadClicked();
+  void onSaveClicked();
 
 private:
-  Ui::MainWindow *ui;
+  void showResult(const QString& result, const QString& warning = QString());
+
+  QLineEdit* le_input;
+  QTextEdit* te_output;
+  QTextEdit* te_errors;
+
+  QPushButton* btn_convert;
+  QPushButton* btn_load;
+  QPushButton* btn_save;
 };
-#endif // MAINWINDOW_H

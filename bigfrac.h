@@ -28,8 +28,15 @@ public:
   BigFraction operator-(const BigFraction& other) const;  // a >= b
   BigFraction operator*(const BigFraction& other) const;
   BigFraction operator/(const BigFraction& other) const;  // other != 0
+  // Добавьте этот метод в класс BigFraction (в .h файл)
+  std::string toDecimal(int precision = 10) const;  // precision - кол-во знаков после запятой
+
+  // Или перегруженный оператор для вывода в десятичном виде
   friend std::ostream& operator<<(std::ostream& out, const BigFraction& other);
+  friend std::istream& operator>>(std::istream& is, BigFraction& other);
   // Упрощения
+  std::string toString() const;  // дробный вид
+  std::string toDecimalString(int precision = 10) const;
   BigInteger integerPart() const;   // целая часть: a / b
   BigFraction remainder() const;    // a % b как дробь
 
@@ -143,13 +150,85 @@ BigFraction BigFraction::operator/(const BigFraction &other) const {
 BigFraction::BigFraction(int num) : BigFraction(BigInteger(num)) {
 }
 
-std::ostream &operator<<(std::ostream &out, const BigFraction &other) {
-  BigInteger num = other.num_;
-  BigInteger den = other.den_;
-  if (den == 1) {
-    out << num;
-  } else {
-    out << num << '/' << den;
+// Метод для преобразования в десятичную строку
+std::string BigFraction::toDecimal(int precision) const {
+  if (num_.isZero()) return "0";
+
+  BigInteger intPart = num_ / den_;
+  BigInteger rem = num_ % den_;
+
+  std::string result = intPart.toString();
+
+  if (precision > 0 && !rem.isZero()) {
+    result += ".";
+
+    BigInteger current = rem;
+    for (int i = 0; i < precision; ++i) {
+      current = current * 10;
+      BigInteger digit = current / den_;
+      result += digit.toString();
+      current = current % den_;
+
+      if (current.isZero()) break;
+    }
   }
+
+  return result;
+}
+
+std::istream &operator>>(std::istream &is, BigFraction &frac) {
+  std::string token;
+  is >> token;
+
+  size_t slash = token.find('/');
+  if (slash == std::string::npos) {
+    // ввод без знаменателя: x  ->  x/1
+    BigInteger num(token);
+    frac = BigFraction(num, BigInteger(1));
+  } else {
+    std::string num_str = token.substr(0, slash);
+    std::string den_str = token.substr(slash + 1);
+    BigInteger num(num_str);
+    BigInteger den(den_str);
+    frac = BigFraction(num, den);
+  }
+  return is;
+}
+
+std::string BigFraction::toString() const {
+  if (den_ == 1) {
+    return num_.toString();
+  }
+  return num_.toString() + "/" + den_.toString();
+}
+
+std::string BigFraction::toDecimalString(int precision) const {
+  if (num_.isZero()) return "0";
+
+  BigInteger intPart = num_ / den_;
+  BigInteger rem = num_ % den_;
+
+  std::string result = intPart.toString();
+
+  if (precision > 0 && !rem.isZero()) {
+    result += ".";
+
+    BigInteger current = rem;
+    for (int i = 0; i < precision; ++i) {
+      current = current * 10;
+      BigInteger digit = current / den_;
+      result += digit.toString();
+      current = current % den_;
+
+      if (current.isZero()) break;
+    }
+  }
+
+  return result;
+}
+
+// Оператор вывода оставляем для дробного вида
+std::ostream& operator<<(std::ostream& out, const BigFraction& other) {
+  out << other.toDecimalString();
   return out;
 }

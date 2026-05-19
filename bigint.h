@@ -54,6 +54,7 @@ public:
 
          // Оператор вывода
   friend std::ostream& operator<<(std::ostream& os, const BigInteger& bi);
+  friend std::istream& operator>>(std::istream& is, BigInteger& bi);
 
 private:
   std::vector<int> digits;  // младшие разряды first
@@ -349,13 +350,27 @@ bool operator>=(int small, const BigInteger &a) {
 }
 
 
-std::ostream &operator<<(std::ostream &os, const BigInteger &bi) {
-  if (bi.digits.empty()) {
+std::ostream& operator<<(std::ostream& os, const BigInteger& bi) {
+  if (bi.digits.empty() || (bi.digits.size() == 1 && bi.digits[0] == 0)) {
     os << '0';
     return os;
   }
 
-  for (int i = bi.digits.size() - 1; i >= 0;i--)
-    os << (short)bi.digits[i];
+  // Выводим старший разряд (без ведущих нулей)
+  os << bi.digits.back();
+
+  // Выводим остальные разряды с ведущими нулями до 9 цифр
+  char buffer[10];
+  for (int i = (int)bi.digits.size() - 2; i >= 0; --i) {
+    snprintf(buffer, sizeof(buffer), "%09d", bi.digits[i]);
+    os << buffer;
+  }
+
   return os;
+}
+std::istream& operator>>(std::istream& is, BigInteger& bi) {
+  std::string s;
+  is >> s;
+  bi = BigInteger(s);
+  return is;
 }

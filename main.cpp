@@ -1,4 +1,4 @@
-/* #include "mainwindow.h"
+#include "mainwindow.h"
 
 #include <QApplication>
 
@@ -7,12 +7,6 @@ int main(int argc, char *argv[]) {
   MainWindow w;
   w.show();
   return a.exec();
-} */
-#include<iostream>
-#include"bigfrac.h"
-int main(){
-  BigFraction a = 10;
-
-  return 0;
 }
+
 
