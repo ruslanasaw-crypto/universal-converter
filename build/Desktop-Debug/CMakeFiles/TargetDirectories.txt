@@ -1,0 +1,9 @@
+/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/uc.dir
+/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/list_install_components.dir
+/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/install.dir
+/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/install/local.dir
+/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/install/strip.dir
+/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/uc_autogen_timestamp_deps.dir
+/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/uc_autogen.dir
