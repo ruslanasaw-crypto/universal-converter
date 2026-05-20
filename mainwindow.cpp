@@ -1,39 +1,27 @@
-// mainwindow.cpp
 #include "mainwindow.h"
-#include "bigfrac.h"
-
+#include "parser.h"
+#include "formatter.h"
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QGridLayout>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
-QString readAndPrintFraction(const QString& input_str, bool& success, QString& error_msg) {
-  std::istringstream iss(input_str.toStdString());
-  BigFraction f;
-  if (!(iss >> f)) {
-    success = false;
-    error_msg = "Не удалось разобрать дробь...";
-    return QString();
-  }
 
-  std::ostringstream oss;
-  oss << f;
-  success = true;
-  error_msg.clear();
-  return QString::fromStdString(oss.str());
-}
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent) {
   QWidget* central = new QWidget(this);
   setCentralWidget(central);
 
+  le_p = new QLineEdit();
+  le_q = new QLineEdit();
   le_input = new QLineEdit();
 
-  btn_convert = new QPushButton("Show fraction");
+  btn_convert = new QPushButton("Convert");
+
   te_output = new QTextEdit;
   te_output->setReadOnly(true);
-
   te_errors = new QTextEdit;
   te_errors->setReadOnly(true);
 
@@ -41,16 +29,21 @@ MainWindow::MainWindow(QWidget* parent)
   btn_save = new QPushButton("Save to file...");
 
          // layout
-  QVBoxLayout* v1 = new QVBoxLayout;
-  v1->addWidget(new QLabel("Input fraction"));
-  v1->addWidget(le_input);
-  v1->addWidget(btn_convert);
+  QGridLayout* gl = new QGridLayout;
+  gl->addWidget(new QLabel("p [2, 500]:"), 0, 0);
+  gl->addWidget(le_p, 0, 1);
+  gl->addWidget(new QLabel("q [2, 500]:"), 1, 0);
+  gl->addWidget(le_q, 1, 1);
+  gl->addWidget(new QLabel("input:"), 2, 0);
+  gl->addWidget(le_input, 2, 1, 1, 2);
 
-  QVBoxLayout* v2 = new QVBoxLayout;
-  v2->addWidget(new QLabel("Result (BigFraction as string):"));
-  v2->addWidget(te_output);
-  v2->addWidget(new QLabel("Errors / Notes:"));
-  v2->addWidget(te_errors);
+  gl->addWidget(btn_convert, 3, 0, 1, 3);
+
+  QVBoxLayout* v1 = new QVBoxLayout;
+  v1->addWidget(new QLabel("output:"));
+  v1->addWidget(te_output);
+  v1->addWidget(new QLabel("Errors"));
+  v1->addWidget(te_errors);
 
   QHBoxLayout* h1 = new QHBoxLayout;
   h1->addWidget(btn_load);
@@ -58,57 +51,61 @@ MainWindow::MainWindow(QWidget* parent)
   h1->addStretch();
 
   QVBoxLayout* mainLayout = new QVBoxLayout;
+  mainLayout->addLayout(gl);
   mainLayout->addLayout(v1);
-  mainLayout->addLayout(v2);
   mainLayout->addLayout(h1);
 
   central->setLayout(mainLayout);
 
-  connect(btn_convert, &QPushButton::clicked,
-          this, &MainWindow::onConvertClicked);
-  connect(btn_load, &QPushButton::clicked,
-          this, &MainWindow::onLoadClicked);
-  connect(btn_save, &QPushButton::clicked,
-          this, &MainWindow::onSaveClicked);
-}
-
-void MainWindow::onConvertClicked() {
-  QString input = le_input->text().trimmed();
-  std::cout << "Input string: \"" << input.toStdString() << "\"" << std::endl;
-
-  std::istringstream iss(input.toStdString());
-  BigFraction f;
-  if (!(iss >> f)) {
-    showResult("", "Ошибка: строка ввода пуста.");
-    return;
-  }
-
-
-  bool success = true;
-  QString error_msg;
-  QString result = readAndPrintFraction(input, success, error_msg);
-
-  if (success) {
-    showResult(result, error_msg);
-  } else {
-    showResult("", error_msg);
-  }
+  connect(btn_convert, &QPushButton::clicked, this, &MainWindow::onConvertClicked);
+  connect(btn_load, &QPushButton::clicked, this, &MainWindow::onLoadClicked);
+  connect(btn_save, &QPushButton::clicked, this, &MainWindow::onSaveClicked);
 }
 
 void MainWindow::showResult(const QString& result, const QString& warning) {
   te_output->clear();
-  if (!result.isEmpty()) {
-    te_output->append(result);
-  }
+  if (!result.isEmpty()) te_output->setPlainText(result);
   te_errors->clear();
   if (!warning.isEmpty()) {
-    te_errors->append(warning);
+    te_errors->setPlainText(warning);
+  }
+}
+
+void MainWindow::onConvertClicked() {
+  bool ok;
+  QString s_p = le_p->text().trimmed();
+  QString s_q = le_q->text().trimmed();
+  QString input = le_input->text().trimmed();
+
+  int p = s_p.toInt(&ok);
+  if (!ok || p < 2 || p > 500) {
+    showResult("", "Ошибка: p должно быть целым числом от 2 до 500.");
+    return;
+  }
+
+  int q = s_q.toInt(&ok);
+  if (!ok || q < 2 || q > 500) {
+    showResult("", "Ошибка: q должно быть целым числом от 2 до 500.");
+    return;
+  }
+
+  if (input.isEmpty()) {
+    showResult("", "Ошибка: входная строка пуста.");
+    return;
+  }
+
+  try {
+    BigFraction x = parse_p_number(input.toStdString(), p);
+    BigInteger I = x.integerPart();
+    std::string int_str = integerToBaseQ(I, q);
+    showResult(QString::fromStdString(int_str), QString());
+  } catch (const std::exception& e) {
+    showResult("", QString::fromStdString(e.what()));
   }
 }
 
 void MainWindow::onLoadClicked() {
-  QString path = QFileDialog::getOpenFileName(this, "Загрузить дробь из файла...",
-                                              QString(), "Text files (*.txt)");
+  QString path = QFileDialog::getOpenFileName(this, "Загрузить файл...", "", "Text files (*.txt)");
   if (path.isEmpty()) return;
 
   QFile file(path);
@@ -118,10 +115,14 @@ void MainWindow::onLoadClicked() {
   }
 
   QTextStream ts(&file);
-  QString content = ts.readAll();
+  QString p_str = ts.readLine().trimmed();
+  QString q_str = ts.readLine().trimmed();
+  QString inp = ts.readAll().trimmed();
   file.close();
 
-  le_input->setText(content.trimmed());
+  le_p->setText(p_str);
+  le_q->setText(q_str);
+  le_input->setText(inp);
 }
 
 void MainWindow::onSaveClicked() {
@@ -131,8 +132,7 @@ void MainWindow::onSaveClicked() {
     return;
   }
 
-  QString path = QFileDialog::getSaveFileName(this, "Сохранить дробь в файл...",
-                                              QString(), "Text files (*.txt)");
+  QString path = QFileDialog::getSaveFileName(this, "Сохранить результат...", "", "Text files (*.txt)");
   if (path.isEmpty()) return;
 
   QFile file(path);

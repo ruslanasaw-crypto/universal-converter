@@ -9,8 +9,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "uc_autogen/timestamp" "custom" "uc_autogen/deps"
+  "/home/ruslana/uc/bigfrac.cpp" "CMakeFiles/uc.dir/bigfrac.cpp.o" "gcc" "CMakeFiles/uc.dir/bigfrac.cpp.o.d"
+  "/home/ruslana/uc/bigint.cpp" "CMakeFiles/uc.dir/bigint.cpp.o" "gcc" "CMakeFiles/uc.dir/bigint.cpp.o.d"
+  "/home/ruslana/uc/formatter.cpp" "CMakeFiles/uc.dir/formatter.cpp.o" "gcc" "CMakeFiles/uc.dir/formatter.cpp.o.d"
   "/home/ruslana/uc/main.cpp" "CMakeFiles/uc.dir/main.cpp.o" "gcc" "CMakeFiles/uc.dir/main.cpp.o.d"
   "/home/ruslana/uc/mainwindow.cpp" "CMakeFiles/uc.dir/mainwindow.cpp.o" "gcc" "CMakeFiles/uc.dir/mainwindow.cpp.o.d"
+  "/home/ruslana/uc/parser.cpp" "CMakeFiles/uc.dir/parser.cpp.o" "gcc" "CMakeFiles/uc.dir/parser.cpp.o.d"
   "/home/ruslana/uc/build/Desktop-Debug/uc_autogen/mocs_compilation.cpp" "CMakeFiles/uc.dir/uc_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/uc.dir/uc_autogen/mocs_compilation.cpp.o.d"
   "" "uc" "gcc" "CMakeFiles/uc.dir/link.d"
   )

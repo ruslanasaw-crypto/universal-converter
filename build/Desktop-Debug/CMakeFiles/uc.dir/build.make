@@ -121,11 +121,71 @@ CMakeFiles/uc.dir/mainwindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uc.dir/mainwindow.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ruslana/uc/mainwindow.cpp -o CMakeFiles/uc.dir/mainwindow.cpp.s
 
+CMakeFiles/uc.dir/parser.cpp.o: CMakeFiles/uc.dir/flags.make
+CMakeFiles/uc.dir/parser.cpp.o: /home/ruslana/uc/parser.cpp
+CMakeFiles/uc.dir/parser.cpp.o: CMakeFiles/uc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ruslana/uc/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/uc.dir/parser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/uc.dir/parser.cpp.o -MF CMakeFiles/uc.dir/parser.cpp.o.d -o CMakeFiles/uc.dir/parser.cpp.o -c /home/ruslana/uc/parser.cpp
+
+CMakeFiles/uc.dir/parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/uc.dir/parser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ruslana/uc/parser.cpp > CMakeFiles/uc.dir/parser.cpp.i
+
+CMakeFiles/uc.dir/parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uc.dir/parser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ruslana/uc/parser.cpp -o CMakeFiles/uc.dir/parser.cpp.s
+
+CMakeFiles/uc.dir/formatter.cpp.o: CMakeFiles/uc.dir/flags.make
+CMakeFiles/uc.dir/formatter.cpp.o: /home/ruslana/uc/formatter.cpp
+CMakeFiles/uc.dir/formatter.cpp.o: CMakeFiles/uc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ruslana/uc/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/uc.dir/formatter.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/uc.dir/formatter.cpp.o -MF CMakeFiles/uc.dir/formatter.cpp.o.d -o CMakeFiles/uc.dir/formatter.cpp.o -c /home/ruslana/uc/formatter.cpp
+
+CMakeFiles/uc.dir/formatter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/uc.dir/formatter.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ruslana/uc/formatter.cpp > CMakeFiles/uc.dir/formatter.cpp.i
+
+CMakeFiles/uc.dir/formatter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uc.dir/formatter.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ruslana/uc/formatter.cpp -o CMakeFiles/uc.dir/formatter.cpp.s
+
+CMakeFiles/uc.dir/bigint.cpp.o: CMakeFiles/uc.dir/flags.make
+CMakeFiles/uc.dir/bigint.cpp.o: /home/ruslana/uc/bigint.cpp
+CMakeFiles/uc.dir/bigint.cpp.o: CMakeFiles/uc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ruslana/uc/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/uc.dir/bigint.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/uc.dir/bigint.cpp.o -MF CMakeFiles/uc.dir/bigint.cpp.o.d -o CMakeFiles/uc.dir/bigint.cpp.o -c /home/ruslana/uc/bigint.cpp
+
+CMakeFiles/uc.dir/bigint.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/uc.dir/bigint.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ruslana/uc/bigint.cpp > CMakeFiles/uc.dir/bigint.cpp.i
+
+CMakeFiles/uc.dir/bigint.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uc.dir/bigint.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ruslana/uc/bigint.cpp -o CMakeFiles/uc.dir/bigint.cpp.s
+
+CMakeFiles/uc.dir/bigfrac.cpp.o: CMakeFiles/uc.dir/flags.make
+CMakeFiles/uc.dir/bigfrac.cpp.o: /home/ruslana/uc/bigfrac.cpp
+CMakeFiles/uc.dir/bigfrac.cpp.o: CMakeFiles/uc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ruslana/uc/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/uc.dir/bigfrac.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/uc.dir/bigfrac.cpp.o -MF CMakeFiles/uc.dir/bigfrac.cpp.o.d -o CMakeFiles/uc.dir/bigfrac.cpp.o -c /home/ruslana/uc/bigfrac.cpp
+
+CMakeFiles/uc.dir/bigfrac.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/uc.dir/bigfrac.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ruslana/uc/bigfrac.cpp > CMakeFiles/uc.dir/bigfrac.cpp.i
+
+CMakeFiles/uc.dir/bigfrac.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/uc.dir/bigfrac.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ruslana/uc/bigfrac.cpp -o CMakeFiles/uc.dir/bigfrac.cpp.s
+
 # Object files for target uc
 uc_OBJECTS = \
 "CMakeFiles/uc.dir/uc_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/uc.dir/main.cpp.o" \
-"CMakeFiles/uc.dir/mainwindow.cpp.o"
+"CMakeFiles/uc.dir/mainwindow.cpp.o" \
+"CMakeFiles/uc.dir/parser.cpp.o" \
+"CMakeFiles/uc.dir/formatter.cpp.o" \
+"CMakeFiles/uc.dir/bigint.cpp.o" \
+"CMakeFiles/uc.dir/bigfrac.cpp.o"
 
 # External object files for target uc
 uc_EXTERNAL_OBJECTS =
@@ -133,13 +193,17 @@ uc_EXTERNAL_OBJECTS =
 uc: CMakeFiles/uc.dir/uc_autogen/mocs_compilation.cpp.o
 uc: CMakeFiles/uc.dir/main.cpp.o
 uc: CMakeFiles/uc.dir/mainwindow.cpp.o
+uc: CMakeFiles/uc.dir/parser.cpp.o
+uc: CMakeFiles/uc.dir/formatter.cpp.o
+uc: CMakeFiles/uc.dir/bigint.cpp.o
+uc: CMakeFiles/uc.dir/bigfrac.cpp.o
 uc: CMakeFiles/uc.dir/build.make
 uc: CMakeFiles/uc.dir/compiler_depend.ts
 uc: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.17
 uc: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.17
 uc: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.17
 uc: CMakeFiles/uc.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ruslana/uc/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable uc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ruslana/uc/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable uc"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/uc.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -200,6 +200,78 @@ uc_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc_autogen.dir/build.make CMakeFiles/uc_autogen.dir/build
 .PHONY : uc_autogen/fast
 
+bigfrac.o: bigfrac.cpp.o
+.PHONY : bigfrac.o
+
+# target to build an object file
+bigfrac.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/bigfrac.cpp.o
+.PHONY : bigfrac.cpp.o
+
+bigfrac.i: bigfrac.cpp.i
+.PHONY : bigfrac.i
+
+# target to preprocess a source file
+bigfrac.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/bigfrac.cpp.i
+.PHONY : bigfrac.cpp.i
+
+bigfrac.s: bigfrac.cpp.s
+.PHONY : bigfrac.s
+
+# target to generate assembly for a file
+bigfrac.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/bigfrac.cpp.s
+.PHONY : bigfrac.cpp.s
+
+bigint.o: bigint.cpp.o
+.PHONY : bigint.o
+
+# target to build an object file
+bigint.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/bigint.cpp.o
+.PHONY : bigint.cpp.o
+
+bigint.i: bigint.cpp.i
+.PHONY : bigint.i
+
+# target to preprocess a source file
+bigint.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/bigint.cpp.i
+.PHONY : bigint.cpp.i
+
+bigint.s: bigint.cpp.s
+.PHONY : bigint.s
+
+# target to generate assembly for a file
+bigint.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/bigint.cpp.s
+.PHONY : bigint.cpp.s
+
+formatter.o: formatter.cpp.o
+.PHONY : formatter.o
+
+# target to build an object file
+formatter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/formatter.cpp.o
+.PHONY : formatter.cpp.o
+
+formatter.i: formatter.cpp.i
+.PHONY : formatter.i
+
+# target to preprocess a source file
+formatter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/formatter.cpp.i
+.PHONY : formatter.cpp.i
+
+formatter.s: formatter.cpp.s
+.PHONY : formatter.s
+
+# target to generate assembly for a file
+formatter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/formatter.cpp.s
+.PHONY : formatter.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -248,6 +320,30 @@ mainwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/mainwindow.cpp.s
 .PHONY : mainwindow.cpp.s
 
+parser.o: parser.cpp.o
+.PHONY : parser.o
+
+# target to build an object file
+parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/parser.cpp.o
+.PHONY : parser.cpp.o
+
+parser.i: parser.cpp.i
+.PHONY : parser.i
+
+# target to preprocess a source file
+parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/parser.cpp.i
+.PHONY : parser.cpp.i
+
+parser.s: parser.cpp.s
+.PHONY : parser.s
+
+# target to generate assembly for a file
+parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/uc.dir/build.make CMakeFiles/uc.dir/parser.cpp.s
+.PHONY : parser.cpp.s
+
 uc_autogen/mocs_compilation.o: uc_autogen/mocs_compilation.cpp.o
 .PHONY : uc_autogen/mocs_compilation.o
 
@@ -287,12 +383,24 @@ help:
 	@echo "... uc_autogen"
 	@echo "... uc_autogen_timestamp_deps"
 	@echo "... uc"
+	@echo "... bigfrac.o"
+	@echo "... bigfrac.i"
+	@echo "... bigfrac.s"
+	@echo "... bigint.o"
+	@echo "... bigint.i"
+	@echo "... bigint.s"
+	@echo "... formatter.o"
+	@echo "... formatter.i"
+	@echo "... formatter.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
 	@echo "... mainwindow.o"
 	@echo "... mainwindow.i"
 	@echo "... mainwindow.s"
+	@echo "... parser.o"
+	@echo "... parser.i"
+	@echo "... parser.s"
 	@echo "... uc_autogen/mocs_compilation.o"
 	@echo "... uc_autogen/mocs_compilation.i"
 	@echo "... uc_autogen/mocs_compilation.s"

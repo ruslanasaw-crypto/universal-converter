@@ -5,6 +5,10 @@ uc: \
   CMakeFiles/uc.dir/uc_autogen/mocs_compilation.cpp.o \
   CMakeFiles/uc.dir/main.cpp.o \
   CMakeFiles/uc.dir/mainwindow.cpp.o \
+  CMakeFiles/uc.dir/parser.cpp.o \
+  CMakeFiles/uc.dir/formatter.cpp.o \
+  CMakeFiles/uc.dir/bigint.cpp.o \
+  CMakeFiles/uc.dir/bigfrac.cpp.o \
   /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.17 \
   /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.17 \
   /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.17 \
@@ -74,6 +78,14 @@ CMakeFiles/uc.dir/uc_autogen/mocs_compilation.cpp.o:
 CMakeFiles/uc.dir/main.cpp.o:
 
 CMakeFiles/uc.dir/mainwindow.cpp.o:
+
+CMakeFiles/uc.dir/parser.cpp.o:
+
+CMakeFiles/uc.dir/formatter.cpp.o:
+
+CMakeFiles/uc.dir/bigint.cpp.o:
+
+CMakeFiles/uc.dir/bigfrac.cpp.o:
 
 /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.17:
 

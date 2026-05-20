@@ -91,11 +91,18 @@
 		],
 		[ "/home/ruslana/uc/bigint.h", "MU", "EWIEGA46WW/moc_bigint.cpp", null ],
 		[
+			"/home/ruslana/uc/formatter.h",
+			"MU",
+			"EWIEGA46WW/moc_formatter.cpp",
+			null
+		],
+		[
 			"/home/ruslana/uc/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
 			null
-		]
+		],
+		[ "/home/ruslana/uc/parser.h", "MU", "EWIEGA46WW/moc_parser.cpp", null ]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/home/ruslana/uc/build/Desktop-Debug/uc_autogen/include",
@@ -148,8 +155,12 @@
 	"SETTINGS_FILE" : "/home/ruslana/uc/build/Desktop-Debug/CMakeFiles/uc_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/home/ruslana/uc/bigfrac.cpp", "MU", null ],
+		[ "/home/ruslana/uc/bigint.cpp", "MU", null ],
+		[ "/home/ruslana/uc/formatter.cpp", "MU", null ],
 		[ "/home/ruslana/uc/main.cpp", "MU", null ],
-		[ "/home/ruslana/uc/mainwindow.cpp", "MU", null ]
+		[ "/home/ruslana/uc/mainwindow.cpp", "MU", null ],
+		[ "/home/ruslana/uc/parser.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

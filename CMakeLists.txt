@@ -40,6 +40,10 @@ else()
             ${PROJECT_SOURCES}
             bigint.h
             bigfrac.h
+            parser.h parser.cpp
+            formatter.h formatter.cpp
+            bigint.cpp
+            bigfrac.cpp
         )
     endif()
 endif()

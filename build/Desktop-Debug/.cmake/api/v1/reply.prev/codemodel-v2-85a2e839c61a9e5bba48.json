@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-8c67bdeddf19d1db90fb.json",
+					"jsonFile" : "directory-.-Debug-87f35b7f5b6e961fd605.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "uc::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-uc-Debug-4dbe7d9d9559b26169f9.json",
+					"jsonFile" : "target-uc-Debug-634368888d6a7d4d1aac.json",
 					"name" : "uc",
 					"projectIndex" : 0
 				},
