@@ -1,6 +1,5 @@
 CMakeFiles/uc.dir/parser.cpp.o: /home/ruslana/uc/parser.cpp \
  /usr/include/stdc-predef.h /home/ruslana/uc/parser.h \
- /home/ruslana/uc/bigfrac.h /home/ruslana/uc/bigint.h \
  /usr/include/c++/15/string /usr/include/c++/15/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/os_defines.h \
@@ -120,7 +119,8 @@ CMakeFiles/uc.dir/parser.cpp.o: /home/ruslana/uc/parser.cpp \
  /usr/include/c++/15/vector /usr/include/c++/15/bits/stl_uninitialized.h \
  /usr/include/c++/15/bits/stl_vector.h \
  /usr/include/c++/15/bits/stl_bvector.h \
- /usr/include/c++/15/bits/vector.tcc /usr/include/c++/15/cstdint \
+ /usr/include/c++/15/bits/vector.tcc /home/ruslana/uc/bigfrac.h \
+ /home/ruslana/uc/bigint.h /usr/include/c++/15/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \

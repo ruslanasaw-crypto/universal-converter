@@ -1,7 +1,6 @@
 CMakeFiles/uc.dir/formatter.cpp.o: /home/ruslana/uc/formatter.cpp \
  /usr/include/stdc-predef.h /home/ruslana/uc/formatter.h \
- /home/ruslana/uc/bigint.h /usr/include/c++/15/string \
- /usr/include/c++/15/bits/requires_hosted.h \
+ /usr/include/c++/15/string /usr/include/c++/15/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -117,6 +116,7 @@ CMakeFiles/uc.dir/formatter.cpp.o: /home/ruslana/uc/formatter.cpp \
  /usr/include/c++/15/bits/memory_resource.h /usr/include/c++/15/cstddef \
  /usr/include/c++/15/bits/uses_allocator.h \
  /usr/include/c++/15/bits/uses_allocator_args.h /usr/include/c++/15/tuple \
+ /home/ruslana/uc/bigfrac.h /home/ruslana/uc/bigint.h \
  /usr/include/c++/15/vector /usr/include/c++/15/bits/stl_uninitialized.h \
  /usr/include/c++/15/bits/stl_vector.h \
  /usr/include/c++/15/bits/stl_bvector.h \
@@ -178,4 +178,10 @@ CMakeFiles/uc.dir/formatter.cpp.o: /home/ruslana/uc/formatter.cpp \
  /usr/include/c++/15/pstl/glue_algorithm_defs.h \
  /usr/include/c++/15/pstl/execution_defs.h /usr/include/c++/15/sstream \
  /usr/include/c++/15/bits/sstream.tcc /usr/include/c++/15/cstring \
- /usr/include/string.h /usr/include/strings.h
+ /usr/include/string.h /usr/include/strings.h /usr/include/c++/15/map \
+ /usr/include/c++/15/bits/stl_tree.h \
+ /usr/include/c++/15/ext/aligned_buffer.h \
+ /usr/include/c++/15/bits/node_handle.h \
+ /usr/include/c++/15/bits/stl_map.h \
+ /usr/include/c++/15/bits/stl_multimap.h \
+ /usr/include/c++/15/bits/erase_if.h

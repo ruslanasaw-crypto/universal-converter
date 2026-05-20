@@ -2,58 +2,64 @@
 #include "parser.h"
 #include "formatter.h"
 #include <QLabel>
+#include <QGridLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QGridLayout>
+#include <QWidget>
 #include <QFileDialog>
-#include <QMessageBox>
+#include <QFile>
 #include <QTextStream>
+#include <QMessageBox>
 
-MainWindow::MainWindow(QWidget* parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
-  QWidget* central = new QWidget(this);
+  auto* central = new QWidget(this);
   setCentralWidget(central);
 
-  le_p = new QLineEdit();
-  le_q = new QLineEdit();
-  le_input = new QLineEdit();
+  auto* lbl_p = new QLabel("p: [2, 500]", this);
+  auto* lbl_q = new QLabel("q: [2, 500]", this);
+  auto* lbl_input = new QLabel("input:", this);
+  auto* lbl_output = new QLabel("output:", this);
+  auto* lbl_errors = new QLabel("errors:", this);
 
-  btn_convert = new QPushButton("Convert");
+  le_p = new QLineEdit(this);
+  le_q = new QLineEdit(this);
+  le_input = new QLineEdit(this);
 
-  te_output = new QTextEdit;
+  btn_convert = new QPushButton("Convert", this);
+  btn_load = new QPushButton("Load", this);
+  btn_save = new QPushButton("Save", this);
+
+  te_output = new QTextEdit(this);
+  te_errors = new QTextEdit(this);
+
   te_output->setReadOnly(true);
-  te_errors = new QTextEdit;
   te_errors->setReadOnly(true);
 
-  btn_load = new QPushButton("Load from file...");
-  btn_save = new QPushButton("Save to file...");
+  auto* grid = new QGridLayout;
+  grid->addWidget(lbl_p, 0, 0);
+  grid->addWidget(le_p, 0, 1);
+  grid->addWidget(lbl_q, 1, 0);
+  grid->addWidget(le_q, 1, 1);
+  grid->addWidget(lbl_input, 2, 0);
+  grid->addWidget(le_input, 2, 1, 1, 2);
+  grid->addWidget(btn_convert, 3, 0, 1, 3);
 
-         // layout
-  QGridLayout* gl = new QGridLayout;
-  gl->addWidget(new QLabel("p [2, 500]:"), 0, 0);
-  gl->addWidget(le_p, 0, 1);
-  gl->addWidget(new QLabel("q [2, 500]:"), 1, 0);
-  gl->addWidget(le_q, 1, 1);
-  gl->addWidget(new QLabel("input:"), 2, 0);
-  gl->addWidget(le_input, 2, 1, 1, 2);
+  auto* outLayout = new QVBoxLayout;
+  outLayout->addWidget(lbl_output);
+  outLayout->addWidget(te_output);
+  outLayout->addWidget(lbl_errors);
+  outLayout->addWidget(te_errors);
 
-  gl->addWidget(btn_convert, 3, 0, 1, 3);
+  auto* btnLayout = new QHBoxLayout;
+  btnLayout->addWidget(btn_load);
+  btnLayout->addWidget(btn_save);
+  btnLayout->addStretch();
 
-  QVBoxLayout* v1 = new QVBoxLayout;
-  v1->addWidget(new QLabel("output:"));
-  v1->addWidget(te_output);
-  v1->addWidget(new QLabel("Errors"));
-  v1->addWidget(te_errors);
-
-  QHBoxLayout* h1 = new QHBoxLayout;
-  h1->addWidget(btn_load);
-  h1->addWidget(btn_save);
-  h1->addStretch();
-
-  QVBoxLayout* mainLayout = new QVBoxLayout;
-  mainLayout->addLayout(gl);
-  mainLayout->addLayout(v1);
-  mainLayout->addLayout(h1);
+  auto* mainLayout = new QVBoxLayout;
+  mainLayout->addLayout(grid);
+  mainLayout->addLayout(outLayout);
+  mainLayout->addLayout(btnLayout);
 
   central->setLayout(mainLayout);
 
@@ -62,86 +68,94 @@ MainWindow::MainWindow(QWidget* parent)
   connect(btn_save, &QPushButton::clicked, this, &MainWindow::onSaveClicked);
 }
 
-void MainWindow::showResult(const QString& result, const QString& warning) {
+void MainWindow::setError(const QString& text) {
+  te_errors->setPlainText(text);
   te_output->clear();
-  if (!result.isEmpty()) te_output->setPlainText(result);
+}
+
+void MainWindow::setResult(const QString& text) {
+  te_output->setPlainText(text);
   te_errors->clear();
-  if (!warning.isEmpty()) {
-    te_errors->setPlainText(warning);
-  }
 }
 
 void MainWindow::onConvertClicked() {
-  bool ok;
-  QString s_p = le_p->text().trimmed();
-  QString s_q = le_q->text().trimmed();
+  bool okP = false;
+  bool okQ = false;
+
+  int p = le_p->text().trimmed().toInt(&okP);
+  int q = le_q->text().trimmed().toInt(&okQ);
+
+  if (!okP || !okQ) {
+    setError("Ошибка: основание исходной системы должно быть целым числом от 2 до 500.");
+    return;
+  }
+
+  if (p < 2 || p > 500 || q < 2 || q > 500) {
+    setError("Ошибка: основание должно быть целым числом от 2 до 500.");
+    return;
+  }
+
   QString input = le_input->text().trimmed();
-
-  int p = s_p.toInt(&ok);
-  if (!ok || p < 2 || p > 500) {
-    showResult("", "Ошибка: p должно быть целым числом от 2 до 500.");
-    return;
-  }
-
-  int q = s_q.toInt(&ok);
-  if (!ok || q < 2 || q > 500) {
-    showResult("", "Ошибка: q должно быть целым числом от 2 до 500.");
-    return;
-  }
-
   if (input.isEmpty()) {
-    showResult("", "Ошибка: входная строка пуста.");
+    setError("Ошибка: входная строка пуста.");
     return;
   }
 
   try {
-    BigFraction x = parse_p_number(input.toStdString(), p);
-    BigInteger I = x.integerPart();
-    std::string int_str = integerToBaseQ(I, q);
-    showResult(QString::fromStdString(int_str), QString());
+    BigFraction value = parseBaseNumber(input.toStdString(), p);
+    std::string result = numberToBaseString(value, q);
+    setResult(QString::fromStdString(result));
   } catch (const std::exception& e) {
-    showResult("", QString::fromStdString(e.what()));
+    setError(QString("Ошибка: ") + e.what());
   }
 }
 
 void MainWindow::onLoadClicked() {
-  QString path = QFileDialog::getOpenFileName(this, "Загрузить файл...", "", "Text files (*.txt)");
-  if (path.isEmpty()) return;
+  QString fileName = QFileDialog::getOpenFileName(
+      this, "Open input file", QString(), "Text files (*.txt);;All files (*.*)"
+      );
 
-  QFile file(path);
+  if (fileName.isEmpty()) return;
+
+  QFile file(fileName);
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл: " + file.errorString());
+    setError("Ошибка: не удалось открыть файл.");
     return;
   }
 
-  QTextStream ts(&file);
-  QString p_str = ts.readLine().trimmed();
-  QString q_str = ts.readLine().trimmed();
-  QString inp = ts.readAll().trimmed();
-  file.close();
+  QTextStream in(&file);
 
-  le_p->setText(p_str);
-  le_q->setText(q_str);
-  le_input->setText(inp);
+  QString pLine = in.readLine().trimmed();
+  QString qLine = in.readLine().trimmed();
+  QString rest = in.readAll().trimmed();
+
+  le_p->setText(pLine);
+  le_q->setText(qLine);
+  le_input->setText(rest);
+
+  file.close();
 }
 
 void MainWindow::onSaveClicked() {
-  QString text = te_output->toPlainText();
+  QString text = te_output->toPlainText().trimmed();
   if (text.isEmpty()) {
-    QMessageBox::information(this, "Сохранение", "Нет данных для сохранения.");
+    setError("Ошибка: нечего сохранять.");
     return;
   }
 
-  QString path = QFileDialog::getSaveFileName(this, "Сохранить результат...", "", "Text files (*.txt)");
-  if (path.isEmpty()) return;
+  QString fileName = QFileDialog::getSaveFileName(
+      this, "Save output file", QString(), "Text files (*.txt);;All files (*.*)"
+      );
 
-  QFile file(path);
+  if (fileName.isEmpty()) return;
+
+  QFile file(fileName);
   if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-    QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи.");
+    setError("Ошибка: не удалось сохранить файл.");
     return;
   }
 
-  QTextStream ts(&file);
-  ts << text;
+  QTextStream out(&file);
+  out << text;
   file.close();
 }
